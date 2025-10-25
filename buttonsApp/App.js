@@ -1,4 +1,7 @@
 import { StyleSheet, Text, View, Button, Alert, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback  } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+
+
 
 export default function App() {
 
@@ -8,6 +11,14 @@ export default function App() {
 
   const desafioBtn1 = () =>{
     alert('Botão 1 do desafio foi pressionado');
+  }
+
+   const desafioBtn2 = () =>{
+    alert('Botão 2 do desafio foi pressionado');
+  }
+
+   const desafioBtn3 = () =>{
+    alert('Botão 3 do desafio foi pressionado');
   }
 
   return (
@@ -37,13 +48,13 @@ export default function App() {
       </TouchableOpacity>
 
     <Text>Exemplo de um botão que tem uma ondulação(Android somente).</Text>
-      <View>
-        <TouchableNativeFeedback onPress={()=> aoPrecionar('Ripple!')}>
+      
+        <TouchableNativeFeedback onPress={()=> aoPrecionar('Ripple!') } >
             <View style={styles.containerBtn}>
             <Text style={styles.textBtn}>TouchableNativeFeedback</Text>
           </View>
         </TouchableNativeFeedback>
-      </View>
+      
 
       <Text>Exemplo de um botão exibe uma menssagem ao precionar e segurar.</Text>
 
@@ -61,29 +72,34 @@ export default function App() {
 
         <Text> PARTE DO DESAFIO!</Text>
 
-      <TouchableHighlight
-      onPress={() => desafioBtn1('TouchableHighlight'), alert('Está pressionando por muito tempo!')}
-      underlayColor='black'>
-      <View style={styles.containerBtn}>
-        <Text style={styles.textBtn}> TouchableHighlight</Text>
-      </View>
-      </TouchableHighlight>
+        <TouchableHighlight onPress={() => desafioBtn1('TouchableHighlight')}
+          onLongPress={()=> alert('Você está segurando o botão 1 por muito tempo')}
+          underlayColor='black'>
+          <View style={styles.containerBtndesafio}>
+            <Text style={styles.textBtndesafio}> TouchableHighlight</Text>
+          </View>
+        </TouchableHighlight>
 
-      <TouchableOpacity onPress={()=> alert('O segundo botão foi pressionado'), activeOpacity={0.8}}>
-        <View style={styles.containerBtn}>
-          <Text style={styles.textBtn}>TouchableOpacity</Text>
+
+      <TouchableOpacity onPress={desafioBtn2} activeOpacity={0.4} 
+        onLongPress={()=> alert('Você está segurando o botão 2 por muito tempo')}>
+        <View style={styles.containerBtndesafio2}>
+        <Text style={styles.textBtn}>TouchableOpacity</Text>
+        <FontAwesome name="user" size={40} color="#fff" />
         </View>
       </TouchableOpacity>
 
-      <View>
-        <TouchableNativeFeedback onPress={()=> alert('O botão do android foi acionado')('Ripple!')}>
-            <View style={styles.containerBtn}>
+        <TouchableNativeFeedback onPress={()=> desafioBtn3('Ripple!') } 
+            onLongPress={()=> alert('Por que o efeito Ripple não funciona?')} >
+            <View style={styles.containerBtndesafio3}>
             <Text style={styles.textBtn}>TouchableNativeFeedback</Text>
           </View>
         </TouchableNativeFeedback>
-      </View>
+      
 
-    </View>
+      
+
+       </View>
 
 
     </View>
@@ -118,5 +134,35 @@ const styles = StyleSheet.create({
     gap:10,
     alignItems: 'center',
     marginTop: 10,
+  },
+  containerBtndesafio:{
+    backgroundColor: 'red',
+    padding: 10,
+    borderRadius: 5,
+  },
+
+  textBtndesafio:{
+    color: 'yellow',
+    fontWeight: 'bold',
+
+  },
+
+  containerBtndesafio2: {
+    backgroundColor: 'rgba(0, 128, 255, 1)',
+    padding: 15, // Reduzi um pouco para um visual mais compacto
+    borderRadius: 6,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center', 
+    gap: 10,
+    elevation: 8,
+  },
+
+  containerBtndesafio3:{
+    backgroundColor: 'rgba(58, 168, 69, 1)',
+    padding: 10,
+    borderRadius: 20,
   }
+
+
 });
